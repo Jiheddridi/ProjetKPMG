@@ -12,12 +12,14 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
+    libpq-dev \
     zip \
     unzip \
     nodejs \
     npm \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo_mysql pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip
 
 # Installer Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
@@ -28,8 +30,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Activer le module Apache rewrite
 RUN a2enmod rewrite
 
-# Configurer Apache pour Laravel
-RUN echo '<VirtualHost *:80>\n\
+# Configurer Apache pour Laravel avec port dynamique
+RUN echo '<VirtualHost *:${PORT}>\n\
     DocumentRoot /var/www/html/public\n\
     <Directory /var/www/html/public>\n\
         AllowOverride All\n\
@@ -38,6 +40,9 @@ RUN echo '<VirtualHost *:80>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+# Configurer Apache pour écouter sur le port dynamique
+RUN echo 'Listen ${PORT}' > /etc/apache2/ports.conf
 
 # Copier les fichiers de l'application
 COPY . /var/www/html
@@ -59,8 +64,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Installer les dépendances Node.js et compiler les assets
 RUN npm install && npm run build
 
-# Exposer le port 80
-EXPOSE 80
+# Exposer le port dynamique (Railway utilise la variable PORT)
+EXPOSE ${PORT:-8080}
 
 # Script de démarrage
 COPY docker-entrypoint.sh /usr/local/bin/
