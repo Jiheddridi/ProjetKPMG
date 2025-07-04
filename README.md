@@ -29,15 +29,15 @@ Application web Laravel pour l'évaluation et la gestion des Design Factors selo
 - **Email**: MailHog (développement)
 - **Build**: Vite.js
 
-## 🚀 Installation
+## 🚀 Installation & Déploiement
 
-### Prérequis
+### 🏠 Développement Local
 
+#### Prérequis
 - Docker & Docker Compose
 - Git
 
-### Étapes d'installation
-
+#### Étapes d'installation
 1. **Cloner le repository**
 ```bash
 git clone https://github.com/Jiheddridi/Cobit-2019.git
@@ -54,8 +54,39 @@ docker-compose up -d
 - phpMyAdmin: http://localhost:8080
 - MailHog: http://localhost:8025
 
-### Compte de test
+### 🌐 Déploiement en Ligne (GRATUIT)
 
+#### Options Recommandées
+
+**1. 🎯 Render.com (Recommandé)**
+- ✅ Gratuit (750h/mois)
+- ✅ PostgreSQL + Redis inclus
+- ✅ SSL automatique
+- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#render)
+
+**2. 🔥 Heroku**
+- ✅ Gratuit avec limitations
+- ✅ Add-ons PostgreSQL/Redis
+- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#heroku)
+
+**3. ⚡ Vercel**
+- ✅ Gratuit pour projets personnels
+- ✅ Déploiement automatique
+- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#vercel)
+
+#### Déploiement Rapide
+```bash
+# Render.com (recommandé)
+./deploy.sh render
+
+# Heroku
+./deploy.sh heroku
+
+# Vercel
+./deploy.sh vercel
+```
+
+### 👤 Compte de Test
 - **Email**: admin@cobit.local
 - **Mot de passe**: password123
 

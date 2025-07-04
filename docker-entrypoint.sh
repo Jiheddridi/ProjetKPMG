@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Configuration pour Railway
+# Universal Docker entrypoint for multiple platforms
 export PORT=${PORT:-8080}
 
-# Configurer Apache pour le port dynamique
-echo "Listen $PORT" > /etc/apache2/ports.conf
-sed -i "s/\${PORT}/$PORT/g" /etc/apache2/sites-available/000-default.conf
+# Configure Apache for dynamic port
+echo "Listen 80" > /etc/apache2/ports.conf
+echo "Listen $PORT" >> /etc/apache2/ports.conf
 
 # Attendre que la base de données soit prête (si PostgreSQL)
 if [ ! -z "$PGHOST" ]; then
@@ -40,17 +40,20 @@ elif [ ! -z "$DB_HOST" ]; then
     echo "MySQL prêt!"
 fi
 
-# Copier le fichier .env approprié
-if [ ! -z "$RAILWAY_ENVIRONMENT" ]; then
-    echo "Environnement Railway détecté, utilisation de .env.railway"
-    if [ -f .env.railway ]; then
-        cp .env.railway .env
+# Copy appropriate .env file based on platform
+if [ ! -z "$RENDER" ]; then
+    echo "Render environment detected"
+    if [ -f .env.render ]; then
+        cp .env.render .env
     else
-        echo "Fichier .env.railway non trouvé, utilisation de .env.example"
         cp .env.example .env
     fi
+elif [ ! -z "$DYNO" ]; then
+    echo "Heroku environment detected"
+    # Heroku uses environment variables directly
+    cp .env.example .env
 elif [ ! -f .env ]; then
-    echo "Copie du fichier .env.example vers .env"
+    echo "Using .env.example"
     cp .env.example .env
 fi
 
