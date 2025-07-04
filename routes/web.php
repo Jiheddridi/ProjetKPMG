@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CobitController;
 use App\Http\Controllers\ChatbotController;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,28 +19,6 @@ use Illuminate\Support\Facades\DB;
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-
-// Health check endpoint pour Railway
-Route::get('/health', function () {
-    try {
-        // Vérifier la connexion à la base de données
-        DB::connection()->getPdo();
-
-        return response()->json([
-            'status' => 'healthy',
-            'database' => 'connected',
-            'timestamp' => now(),
-            'environment' => app()->environment()
-        ], 200);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'unhealthy',
-            'database' => 'disconnected',
-            'error' => $e->getMessage(),
-            'timestamp' => now()
-        ], 503);
-    }
-});
 
 // Route principale - Redirection vers la page d'accueil COBIT
 Route::get('/', function () {

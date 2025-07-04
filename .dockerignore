@@ -2,7 +2,7 @@
 
 # Dossiers de dépendances
 node_modules/
-# vendor/ - Commenté car nécessaire pour Railway
+vendor/
 
 # Fichiers de configuration locale
 .env
@@ -48,9 +48,6 @@ phpunit.xml
 Dockerfile
 docker-compose.yml
 .dockerignore
-
-# Liens symboliques
-public/storage
 
 # Autres
 .editorconfig

@@ -1,141 +1,66 @@
-# COBIT 2019 - Laravel Application
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)
-![PHP](https://img.shields.io/badge/PHP-8.2-blue.svg)
-![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 📋 Description
+## About Laravel
 
-Application web Laravel pour l'évaluation et la gestion des Design Factors selon le framework COBIT 2019. Cette application permet aux organisations d'évaluer leur maturité en gouvernance IT et de générer des rapports détaillés.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## ✨ Fonctionnalités
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- 🎯 **Évaluation COBIT 2019** - Évaluation complète des 10 Design Factors
-- 📊 **Tableaux de bord interactifs** - Visualisation des résultats en temps réel
-- 📄 **Export PDF/Excel** - Génération de rapports professionnels
-- 🤖 **Chatbot intégré** - Assistant intelligent pour l'aide à l'évaluation
-- 🔐 **Authentification sécurisée** - Gestion des utilisateurs et des sessions
-- 💾 **Sauvegarde des évaluations** - Historique et suivi des évaluations
-- 🎨 **Interface moderne** - Design responsive avec Tailwind CSS
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## 🛠️ Technologies Utilisées
+## Learning Laravel
 
-- **Backend**: Laravel 10.x, PHP 8.2
-- **Frontend**: Blade Templates, Tailwind CSS, Alpine.js
-- **Base de données**: MySQL 8.0
-- **Cache**: Redis 7
-- **Containerisation**: Docker & Docker Compose
-- **Email**: MailHog (développement)
-- **Build**: Vite.js
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## 🚀 Installation & Déploiement
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-### 🏠 Développement Local
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-#### Prérequis
-- Docker & Docker Compose
-- Git
+## Laravel Sponsors
 
-#### Étapes d'installation
-1. **Cloner le repository**
-```bash
-git clone https://github.com/Jiheddridi/Cobit-2019.git
-cd Cobit-2019
-```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-2. **Lancer l'environnement Docker**
-```bash
-docker-compose up -d
-```
+### Premium Partners
 
-3. **Accéder à l'application**
-- Application: http://localhost:8000
-- phpMyAdmin: http://localhost:8080
-- MailHog: http://localhost:8025
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-### 🌐 Déploiement en Ligne (GRATUIT)
+## Contributing
 
-#### Options Recommandées
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-**1. 🎯 Render.com (Recommandé)**
-- ✅ Gratuit (750h/mois)
-- ✅ PostgreSQL + Redis inclus
-- ✅ SSL automatique
-- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#render)
+## Code of Conduct
 
-**2. 🔥 Heroku**
-- ✅ Gratuit avec limitations
-- ✅ Add-ons PostgreSQL/Redis
-- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#heroku)
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-**3. ⚡ Vercel**
-- ✅ Gratuit pour projets personnels
-- ✅ Déploiement automatique
-- 👉 [Guide détaillé](DEPLOYMENT_GUIDE.md#vercel)
+## Security Vulnerabilities
 
-#### Déploiement Rapide
-```bash
-# Render.com (recommandé)
-./deploy.sh render
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-# Heroku
-./deploy.sh heroku
+## License
 
-# Vercel
-./deploy.sh vercel
-```
-
-### 👤 Compte de Test
-- **Email**: admin@cobit.local
-- **Mot de passe**: password123
-
-## 🎯 Design Factors COBIT 2019
-
-L'application évalue les 10 Design Factors suivants :
-
-1. **DF1** - Enterprise Strategy
-2. **DF2** - Enterprise Goals
-3. **DF3** - Enterprise Risk Profile
-4. **DF4** - IT-Related Issues
-5. **DF5** - Threat Landscape
-6. **DF6** - Compliance Requirements
-7. **DF7** - Role of IT
-8. **DF8** - Sourcing Model
-9. **DF9** - IT Implementation Methods
-10. **DF10** - Enterprise Size
-
-## 🔧 Commandes Utiles
-
-```bash
-# Voir les logs
-docker-compose logs app
-
-# Redémarrer l'application
-docker-compose restart app
-
-# Accéder au conteneur
-docker-compose exec app bash
-
-# Exécuter des commandes Artisan
-docker-compose exec app php artisan [commande]
-```
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Veuillez suivre ces étapes :
-
-1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
-
-## 👨‍💻 Auteur
-
-**Jihed Dridi**
-- GitHub: [@Jiheddridi](https://github.com/Jiheddridi)
-
-## 📝 License
-
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

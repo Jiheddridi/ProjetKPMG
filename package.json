@@ -3,10 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "migrate": "echo 'Migrations handled by Laravel Artisan'",
-        "start": "echo 'Application started via Docker'",
-        "postinstall": "echo 'Dependencies installed successfully'"
+        "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.6.4",

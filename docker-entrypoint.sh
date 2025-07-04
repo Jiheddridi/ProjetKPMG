@@ -1,59 +1,15 @@
 #!/bin/bash
 
-# Universal Docker entrypoint for multiple platforms
-export PORT=${PORT:-8080}
+# Attendre que la base de données soit prête
+echo "Attente de la base de données..."
+while ! nc -z mysql 3306; do
+  sleep 1
+done
+echo "Base de données prête!"
 
-# Configure Apache for dynamic port
-echo "Listen 80" > /etc/apache2/ports.conf
-echo "Listen $PORT" >> /etc/apache2/ports.conf
-
-# Attendre que la base de données soit prête (si PostgreSQL)
-if [ ! -z "$PGHOST" ]; then
-    echo "Attente de PostgreSQL..."
-    while ! php -r "
-    try {
-        \$pdo = new PDO('pgsql:host=$PGHOST;port=$PGPORT;dbname=$PGDATABASE', '$PGUSER', '$PGPASSWORD');
-        echo 'Connected to PostgreSQL successfully';
-        exit(0);
-    } catch (PDOException \$e) {
-        exit(1);
-    }
-    "; do
-      echo "En attente de PostgreSQL..."
-      sleep 2
-    done
-    echo "PostgreSQL prêt!"
-elif [ ! -z "$DB_HOST" ]; then
-    echo "Attente de la base de données..."
-    while ! php -r "
-    try {
-        \$pdo = new PDO('mysql:host=$DB_HOST;port=${DB_PORT:-3306}', '$DB_USERNAME', '$DB_PASSWORD');
-        echo 'Connected to MySQL successfully';
-        exit(0);
-    } catch (PDOException \$e) {
-        exit(1);
-    }
-    "; do
-      echo "En attente de MySQL..."
-      sleep 2
-    done
-    echo "MySQL prêt!"
-fi
-
-# Copy appropriate .env file based on platform
-if [ ! -z "$RENDER" ]; then
-    echo "Render environment detected"
-    if [ -f .env.render ]; then
-        cp .env.render .env
-    else
-        cp .env.example .env
-    fi
-elif [ ! -z "$DYNO" ]; then
-    echo "Heroku environment detected"
-    # Heroku uses environment variables directly
-    cp .env.example .env
-elif [ ! -f .env ]; then
-    echo "Using .env.example"
+# Copier le fichier .env si il n'existe pas
+if [ ! -f .env ]; then
+    echo "Copie du fichier .env.example vers .env"
     cp .env.example .env
 fi
 
@@ -63,9 +19,9 @@ if ! grep -q "APP_KEY=base64:" .env; then
     php artisan key:generate
 fi
 
-# Exécuter les migrations (avec gestion d'erreur)
+# Exécuter les migrations
 echo "Exécution des migrations..."
-php artisan migrate --force || echo "Migrations échouées, continuons..."
+php artisan migrate --force
 
 # Nettoyer et optimiser le cache
 echo "Optimisation du cache..."
