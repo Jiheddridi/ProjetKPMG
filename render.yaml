@@ -7,17 +7,19 @@ services:
     region: oregon
     branch: main
     healthCheckPath: /health
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: APP_NAME
-        value: COBIT 2019
+        value: "COBIT 2019"
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
-        value: false
+        value: "false"
       - key: APP_KEY
-        generateValue: true
+        value: base64:efPkkxsj/MkIPwYS2nHUlMpvIKBz0YLGbVHLIOV7Ono=
       - key: APP_URL
-        value: https://cobit-2019.onrender.com
+        value: https://cobit-2019-app.onrender.com
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
