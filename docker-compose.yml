@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # Service de l'application Laravel
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cobit-laravel-app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=cobit_laravel
+      - DB_USERNAME=laravel_user
+      - DB_PASSWORD=laravel_password
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - cobit-network
+
+  # Service MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: cobit-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: cobit_laravel
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: laravel_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - cobit-network
+
+  # Service Redis pour le cache et les sessions
+  redis:
+    image: redis:7-alpine
+    container_name: cobit-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - cobit-network
+
+  # Service phpMyAdmin pour la gestion de la base de données
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: cobit-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: laravel_user
+      PMA_PASSWORD: laravel_password
+    depends_on:
+      - mysql
+    networks:
+      - cobit-network
+
+  # Service Mailhog pour tester les emails en développement
+  mailhog:
+    image: mailhog/mailhog
+    container_name: cobit-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Interface web
+    networks:
+      - cobit-network
+
+# Volumes persistants
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# Réseau personnalisé
+networks:
+  cobit-network:
+    driver: bridge
