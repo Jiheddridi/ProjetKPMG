@@ -60,9 +60,9 @@ if ! grep -q "APP_KEY=base64:" .env; then
     php artisan key:generate
 fi
 
-# Exécuter les migrations
+# Exécuter les migrations (avec gestion d'erreur)
 echo "Exécution des migrations..."
-php artisan migrate --force
+php artisan migrate --force || echo "Migrations échouées, continuons..."
 
 # Nettoyer et optimiser le cache
 echo "Optimisation du cache..."

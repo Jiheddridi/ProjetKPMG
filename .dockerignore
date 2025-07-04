@@ -2,7 +2,7 @@
 
 # Dossiers de dépendances
 node_modules/
-vendor/
+# vendor/ - Commenté car nécessaire pour Railway
 
 # Fichiers de configuration locale
 .env
