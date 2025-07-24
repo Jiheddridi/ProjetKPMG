@@ -1,0 +1,73 @@
+STRATÉGIE IT 2024 - PETITE ENTREPRISE INNOVANTE
+
+CONTEXTE ORGANISATIONNEL:
+- Entreprise: TechStart Solutions
+- Secteur: Services informatiques
+- Taille: 45 employés
+- Chiffre d'affaires: 2.5M€
+- Croissance: +30% par an
+
+OBJECTIFS STRATÉGIQUES:
+1. Digitalisation complète des processus internes
+2. Amélioration de la productivité de 25%
+3. Expansion sur de nouveaux marchés
+4. Renforcement de la sécurité informatique
+5. Optimisation des coûts IT
+
+CONTRAINTES IDENTIFIÉES:
+- Budget IT limité: 80k€ pour 2024
+- Équipe IT réduite: 2 personnes
+- Croissance rapide difficile à gérer
+- Besoin de conformité RGPD
+- Concurrence accrue sur le marché
+
+ENJEUX IT PRIORITAIRES:
+- Migration vers le cloud pour la scalabilité
+- Mise en place d'outils collaboratifs
+- Automatisation des processus répétitifs
+- Sécurisation des données clients
+- Formation des équipes aux nouveaux outils
+
+PROFIL DE RISQUE:
+- Risque cybersécurité: ÉLEVÉ (données clients sensibles)
+- Risque opérationnel: MOYEN (dépendance IT forte)
+- Risque financier: ÉLEVÉ (budget serré)
+- Risque de conformité: MOYEN (RGPD à respecter)
+
+GOUVERNANCE IT:
+- Directeur IT: Responsable technique et stratégique
+- Comité de direction: Validation des investissements
+- Processus de décision: Rapide et agile
+- Reporting: Mensuel au comité de direction
+
+RESSOURCES ET COMPÉTENCES:
+- Infrastructure: Principalement cloud (AWS)
+- Applications: SaaS privilégiées
+- Équipe: Compétences techniques élevées
+- Formation: Budget formation 10k€/an
+- Support: Partenaires externes pour expertise
+
+MÉTHODES DE TRAVAIL:
+- Méthodologie: Agile/Scrum
+- Gestion de projet: Outils collaboratifs (Jira, Slack)
+- Développement: DevOps et CI/CD
+- Documentation: Centralisée et accessible
+
+CONFORMITÉ ET AUDIT:
+- RGPD: Mise en conformité en cours
+- Audit interne: Trimestriel
+- Certifications: ISO 27001 prévue en 2025
+- Politiques: En cours de formalisation
+
+SOURCING ET PARTENAIRES:
+- Modèle: Hybride (interne + externe)
+- Cloud: AWS comme partenaire principal
+- Support: Prestataires spécialisés
+- Développement: Équipe interne + freelances
+
+INDICATEURS DE PERFORMANCE:
+- Disponibilité des services: 99.5%
+- Satisfaction utilisateurs: 85%
+- Respect du budget: 95%
+- Délais de livraison: 90% respectés
+- Incidents sécurité: 0 majeur en 2023

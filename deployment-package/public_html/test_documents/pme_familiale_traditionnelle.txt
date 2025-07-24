@@ -1,0 +1,151 @@
+STRATÉGIE IT 2024 - ENTREPRISE FAMILIALE MARTIN & FILS
+
+PROFIL ENTREPRISE:
+- Nom: Martin & Fils SARL
+- Secteur: Commerce de gros (matériaux de construction)
+- Taille: 85 employés (entreprise familiale 3ème génération)
+- Âge: 67 ans (fondée en 1957)
+- Chiffre d'affaires: 12M€ (croissance +1% par an)
+- Clients: 450 entreprises du BTP régionales
+
+VISION STRATÉGIQUE:
+- Préserver l'héritage familial
+- Croissance prudente et maîtrisée
+- Relations clients de proximité
+- Qualité de service avant tout
+- Transmission aux générations futures
+
+OBJECTIFS 2024:
+1. STABILITÉ OPÉRATIONNELLE: Maintenir l'activité
+2. SATISFACTION CLIENT: Garder la proximité
+3. EFFICACITÉ MODÉRÉE: Optimiser sans révolutionner
+4. FORMATION ÉQUIPE: Accompagner les changements
+5. PÉRENNITÉ: Préparer la succession
+
+CONTRAINTES FAMILIALES:
+- Budget IT très limité: 45k€ total
+- Équipe IT: 1 personne à temps partiel
+- Résistance au changement: Culture traditionnelle
+- Compétences limitées: Formation nécessaire
+- Priorité métier: IT = support uniquement
+
+CULTURE D'ENTREPRISE:
+- Valeurs familiales fortes
+- Relations humaines privilégiées
+- Stabilité et continuité
+- Prudence dans les investissements
+- Confiance et loyauté
+- Simplicité et pragmatisme
+
+ARCHITECTURE TECHNIQUE:
+- Infrastructure simple et fiable
+- Serveur local Windows
+- Réseau basique
+- Sauvegardes manuelles
+- Antivirus standard
+- Support externe ponctuel
+
+STACK TECHNOLOGIQUE:
+- ERP: Sage 100 (depuis 15 ans)
+- Comptabilité: Sage Comptabilité
+- CRM: Excel + Outlook
+- Bureautique: Microsoft Office
+- Serveur: Windows Server 2019
+- Antivirus: Kaspersky Business
+- Sauvegarde: Disques externes
+
+MÉTHODES DÉVELOPPEMENT:
+- Pas de développement interne
+- Progiciels standards uniquement
+- Mises à jour prudentes
+- Formation utilisateurs nécessaire
+- Support fournisseur privilégié
+- Changements progressifs
+
+GESTION DES RISQUES:
+- Risque technique: FAIBLE (systèmes simples)
+- Risque financier: MODÉRÉ (budget serré)
+- Risque opérationnel: MODÉRÉ (dépendance IT)
+- Risque humain: ÉLEVÉ (compétences limitées)
+- Risque conformité: FAIBLE (peu de réglementations)
+
+SÉCURITÉ BASIQUE:
+- Antivirus sur tous les postes
+- Firewall basique
+- Mots de passe simples
+- Sauvegardes hebdomadaires
+- Pas de chiffrement
+- Sensibilisation minimale
+
+CONFORMITÉ MINIMALE:
+- RGPD: Compliance de base
+- Comptabilité: Obligations légales
+- Pas d'autres certifications
+- Archivage papier + numérique
+- Déclarations fiscales électroniques
+
+SOURCING EXTERNE:
+- 90% prestataires externes
+- Fournisseurs locaux privilégiés
+- Contrats simples
+- Support téléphonique
+- Maintenance curative
+- Formation ponctuelle
+
+MÉTRIQUES PERFORMANCE:
+- Disponibilité: 95% (acceptable)
+- Satisfaction utilisateurs: 3.5/5
+- Coût par utilisateur: 530€/an
+- Incidents: 2-3 par mois
+- Formation: 4h/an/utilisateur
+- ROI: Non mesuré
+
+INVESTISSEMENTS 2024:
+- Renouvellement matériel: 20k€
+- Licences logicielles: 12k€
+- Formation équipe: 8k€
+- Support externe: 5k€
+
+DÉFIS MAJEURS:
+- Modernisation progressive
+- Formation des équipes
+- Budget IT insuffisant
+- Dépendance prestataires
+- Résistance au changement
+- Succession générationnelle
+
+INDICATEURS MATURITÉ:
+- Processus: FAIBLE (informels)
+- Documentation: MINIMALE (oral)
+- Gouvernance: INEXISTANTE (familiale)
+- Contrôles: BASIQUES (visuels)
+- Audit: JAMAIS (pas nécessaire)
+
+GOUVERNANCE IT:
+- Directeur général (fils)
+- Décisions en famille
+- Pas de comité IT
+- Prestataire externe consulté
+- Budget annuel simple
+
+PROJETS SIMPLES:
+- Migration vers cloud (Office 365)
+- Sauvegarde automatisée
+- Formation cybersécurité
+- CRM simple (Sage CRM)
+- Site web vitrine
+
+VISION FUTURE:
+- Digitalisation progressive
+- Outils simples et efficaces
+- Formation continue équipes
+- Partenariat prestataire de confiance
+- Transmission digitale aux héritiers
+
+SPÉCIFICITÉS PME:
+- Décisions rapides mais prudentes
+- Budget serré mais stable
+- Besoins simples mais essentiels
+- Support humain privilégié
+- Évolution par petites étapes
+- ROI immédiat exigé

@@ -1,0 +1,234 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"message\": \"Rapport COBIT généré et envoyé\",\n  \"timestamp\": \"{{ $now.format('YYYY-MM-DD HH:mm:ss') }}\"\n}",
+        "options": {}
+      },
+      "id": "f2f5b6e9-9eba-499d-93ba-29a2843118e5",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "jihed.dridi@esprit.tn",
+        "subject": "RapportdeCobite ",
+        "message": "={{ $json.html }}",
+        "options": {}
+      },
+      "id": "3689a6f4-1058-4f56-a819-cc0afb3eb0ae",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        944,
+        176
+      ],
+      "webhookId": "f5d7138a-2420-44bd-bf1c-c2a7bccc63cd",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "r32odt6fqiXSehjW",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  const content = item.json.message.content;\n  const cleanedContent = content.replace(/<[^>]*>/g, \"\"); // remove HTML tags\n  const cleanedContentWithoutCode = cleanedContent.replace(/`[^`]*`/g, \"\"); // remove code blocks\n  item.json.cleanedContent = cleanedContentWithoutCode;\n  return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "id": "4e5467b5-38bb-438a-a917-217b6132207d",
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "value": "gpt-4o-mini",
+          "mode": "list"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Tu es un expert senior en gouvernance IT, spécialiste du framework COBIT 2019.\n\nAnalyse le contenu suivant qui décrit les besoins, les problèmes, les risques et les attentes d'une entreprise, exprimés de manière libre.\n\nÀ partir de ce texte, effectue les actions suivantes :\n\n1. Résume brièvement le contexte dans un **résumé exécutif clair**.\n2. Identifie les **risques majeurs** mentionnés ou implicites.\n3. Propose les **Objectifs COBIT 2019 les plus pertinents** (parmi les 40) pour adresser ces besoins, avec **justification claire pour chaque objectif retenu**.\n4. Déduis un **plan d'action priorisé**, avec étapes concrètes pour la gouvernance IT.\n5. Donne des **recommandations pratiques** pour améliorer les processus, la stratégie ou l'organisation.\n\nRéponds en format structuré, adapté à un rapport professionnel.\n\nContenu à analyser :\n---------------------\nProjet : {{ $json.projectName }}\n\nTexte : {{ $json.extractedText }}\n---------------------\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "12900450-8892-4ca9-b571-4d7cc038cda2",
+      "name": "Analyze Text with AI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -208,
+        96
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "TamtVPhYs70JOGdG",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.item;\n\nlet extractedText = item.json.extractedText || '';\nlet projectName = item.json.projectName || 'Projet COBIT';\nlet recipientEmail = item.json.recipientEmail || 'jihed.dridi@esprit.tn';\n\n// Nettoyage brut : espaces, lignes vides, ponctuation incohérente, caractères spéciaux\nextractedText = extractedText\n  .replace(/\\r\\n|\\r/g, '\\n')               // Normaliser les sauts de ligne\n  .replace(/\\t/g, ' ')                     // Supprimer tabulations\n  .replace(/[ ]{2,}/g, ' ')                // Supprimer espaces multiples\n  .replace(/\\n{2,}/g, '\\n')                // Supprimer lignes vides multiples\n  .replace(/^\\s+|\\s+$/g, '')               // Trim début/fin\n  .replace(/[^\\x20-\\x7EÀ-ÿ\\n\\.\\,\\-\\:\\;]/g, '') // Supprimer les caractères non lisibles\n\n// Mise en forme basique : ajout de saut de ligne après certains marqueurs\nextractedText = extractedText\n  .replace(/(Objectif|Risques|Besoins)\\s*:/gi, '\\n\\n$1 :') // Repose les titres sur leur ligne\n\n// Texte trop court ?\nif (!extractedText || extractedText.trim().length < 10) {\n  extractedText = 'Le fichier texte semble vide ou inutilisable.';\n}\n\nreturn {\n  json: {\n    extractedText,\n    projectName,\n    recipientEmail,\n    textLength: extractedText.length,\n    cleaned: true,\n    timestamp: new Date().toISOString(),\n    debug: 'Texte nettoyé et raffiné'\n  }\n};\n"
+      },
+      "id": "19e8dd5c-1846-4b0a-9fc3-29fd0a4e81d9",
+      "name": "Process Input Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -352,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Préparer les données à partir d'un fichier .txt fourni\nconst item = $input.item;\n\nlet projectName = item.json.projectName || 'Projet_Analyse_COBIT';\nlet recipientEmail = item.json.recipientEmail || 'jihed.dridi@esprit.tn';\n\n// Essayer différentes clés possibles\nlet textContent = item.json.file || item.json.text || item.json.content || '';\n\n// Si vide ou trop court → texte factice pour éviter blocage\nif (typeof textContent !== 'string' || textContent.trim().length < 10) {\n  textContent = `Projet : Transformation numérique \n\nObjectif :\nAméliorer la gouvernance IT\n\nRisques :\n- Absence de stratégie claire\n- Manque de supervision des fournisseurs IT\n\nBesoins :\n- Mise en place d’un cadre COBIT\n- Automatisation des indicateurs de performance`;\n}\n\n// === Extraction simple ===\nconst extractSection = (label) => {\n  const regex = new RegExp(`${label}\\\\s*:\\\\s*([\\\\s\\\\S]*?)(\\\\n\\\\w|$)`, 'i');\n  const match = textContent.match(regex);\n  return match ? match[1].trim().replace(/\\n- /g, '<br>- ') : '';\n};\n\nconst objectif = extractSection('Objectif');\nconst risques = extractSection('Risques');\nconst besoins = extractSection('Besoins');\nconst projetDetecte = extractSection('Projet');\n\nif (projetDetecte) {\n  projectName = projetDetecte;\n}\n\n// Retour des données structurées\nreturn {\n  json: {\n    projectName,\n    recipientEmail,\n    extractedText: textContent,\n    objectif,\n    risques,\n    besoins,\n    timestamp: new Date().toISOString(),\n    source: 'txt',\n    debug: 'Texte traité et sections extraites'\n  }\n};\n"
+      },
+      "id": "c126d94b-b541-4bbc-a5a3-b4c60015ec17",
+      "name": "Prepare Input Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "txt-analysis",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "id": "517bc837-139c-44aa-bf47-e52ab024b446",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        144
+      ],
+      "webhookId": "5a36c2f3-3878-4b64-9537-29f94d17ef01"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Rapport COBIT - COBIT 2019</title>\n  <style>\n    body {\n      font-family: 'Segoe UI', Arial, sans-serif;\n      background-color: #f4f6f9;\n      margin: 0;\n      padding: 20px;\n      color: #2c3e50;\n      font-weight: bold; /* Make all text bold */\n    }\n\n    .container {\n      background-color: #ffffff;\n      padding: 32px;\n      border-radius: 12px;\n      box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);\n      max-width: 850px;\n      margin: auto;\n      transition: all 0.3s ease; /* Smooth transition for hover effects */\n    }\n\n    header {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n\n    header img {\n      height: 50px;\n    }\n\n    h1 {\n      color: #00338d; /* Dark blue */\n      font-size: 28px;\n      margin-bottom: 0;\n    }\n\n    h2 {\n      color: #005eb8; /* Lighter blue */\n      font-size: 22px;\n      margin-top: 30px;\n      border-bottom: 2px solid #e0e6ed;\n      padding-bottom: 6px;\n    }\n\n    p {\n      font-size: 16px;\n      line-height: 1.7;\n      margin: 12px 0;\n    }\n\n    .meta {\n      font-size: 14px;\n      color: #999;\n      text-align: right;\n      margin-top: 10px;\n    }\n\n    .chart {\n      margin-top: 30px;\n      text-align: center;\n    }\n\n    .chart img {\n      max-width: 100%;\n      height: auto;\n      margin-bottom: 30px;\n    }\n\n    /* New CSS for a blue theme */\n    .blue-background {\n      background-color: #e0f7fa; /* Light blue background */\n      padding: 10px;\n      border-radius: 8px;\n    }\n\n    /* Table styles */\n    table {\n      width: 100%;\n      border-collapse: collapse;\n      margin-top: 20px;\n    }\n\n    th, td {\n      border: 1px solid #005eb8;\n      padding: 8px;\n      text-align: left;\n    }\n\n    th {\n      background-color: #005eb8;\n      color: white;\n    }\n\n    tr:nth-child(even) {\n      background-color: #f2f2f2;\n    }\n\n    tr:hover {\n      background-color: #e0e6ed;\n    }\n\n    .bold {\n      font-weight: bold;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <header>\n      <div>\n        <h1>Rapport COBIT 2019</h1>\n      </div>\n      <!-- Logo KPMG local -->\n      \n    </header>\n\n    <div class=\"meta\">\n      <strong>Projet :</strong> Analyse projet selon COBIT 2019<br>\n      <strong></strong> \n    </div>\n\n    <div id=\"rapport\" class=\"blue-background\">\n      {{ $json.message.content\n        .replace(/```markdown|```/g, \"\")\n        .replace(/\\*\\*/g, \"\")\n        .replace(/##/g, \"\")\n        .replace(/#/g, \"\")\n        .replace(/\\n/g, \"<br>\") }}\n    </div>\n\n    <h2>Objectifs</h2>\n    <table>\n      <thead>\n        <tr>\n          <th class=\"bold\">Objectif</th>\n          <th class=\"bold\">Description</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td class=\"bold\">EDM01</td>\n          <td>Ensure Governance Framework Setting and Maintenance</td>\n        </tr>\n        <tr>\n          <td class=\"bold\">MEA01</td>\n          <td>Monitor, Evaluate and Assess Performance</td>\n        </tr>\n        <tr>\n          <td class=\"bold\">BA03</td>\n          <td>Manage Programmes and Project</td>\n        </tr>\n      </tbody>\n    </table>\n\n    <div class=\"chart\">\n      <h2>Vue d'ensemble - Radar Chart</h2>\n      <img src=\"https://quickchart.io/chart?c={type:'radar',data:{labels:['EDM01','APO12','BAI03','DSS05','MEA01'],datasets:[{label:'Évaluation',data:[4,3,5,2,4],backgroundColor:'rgba(0,123,255,0.2)',borderColor:'rgba(0,123,255,1)'}]}}\" alt=\"Graphique Radar COBIT\">\n\n      <h2>Scores par Domaine - Bar Chart</h2>\n      <img src=\"https://quickchart.io/chart?c={type:'bar',data:{labels:['Évaluer','Planifier','Construire','Exécuter','Surveiller'],datasets:[{label:'Score',data:[75,60,80,50,70],backgroundColor:'rgba(0,91,187,0.7)'}]},options:{scales:{y:{beginAtZero:true}}}}\" alt=\"Graphique Barre COBIT\">\n    </div>\n  </div>\n</body>\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        368,
+        560
+      ],
+      "id": "19b0960f-a654-4c70-b56e-5221b58bd051",
+      "name": "HTML"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Report": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Text with AI": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Input Text": {
+      "main": [
+        [
+          {
+            "node": "Analyze Text with AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Input Data": {
+      "main": [
+        [
+          {
+            "node": "Process Input Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Input Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bc7ecf25-5ccf-42c3-b402-5225c626231a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2de5254f407fbb858b87d00957b955035ba53f47db04cc111744719dd622a09d"
+  },
+  "id": "mcD3rxWXkWWxvAXB",
+  "tags": []
+}

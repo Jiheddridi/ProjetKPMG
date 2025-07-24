@@ -17,3 +17,23 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Fichiers de déploiement temporaires
+/deployment_ready
+index_production.php
+.htaccess_production
+prepare_deployment.php
+
+# Logs et caches
+/storage/logs/*.log
+/bootstrap/cache/*.php
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Fichiers de sauvegarde
+*.bak
+*.backup

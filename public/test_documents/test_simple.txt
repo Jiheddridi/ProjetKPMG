@@ -1,0 +1,35 @@
+DOCUMENT DE TEST - PETITE ENTREPRISE TECH
+
+CONTEXTE:
+- Entreprise: TestCorp
+- Secteur: Technologie
+- Taille: 50 employés
+- Budget IT: 100k€
+
+OBJECTIFS:
+- Croissance rapide
+- Innovation continue
+- Sécurité renforcée
+- Conformité RGPD
+
+CONTRAINTES:
+- Budget limité
+- Équipe IT réduite
+- Croissance rapide
+- Conformité obligatoire
+
+ENJEUX:
+- Cybersécurité
+- Scalabilité
+- Agilité
+- DevOps
+
+GOUVERNANCE:
+- Processus agiles
+- Décisions rapides
+- Reporting mensuel
+
+RISQUES:
+- Sécurité élevée
+- Opérationnel moyen
+- Financier élevé
