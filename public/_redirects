@@ -1,0 +1,14 @@
+# Redirections pour Laravel sur Netlify
+
+# API routes vers les fonctions Netlify
+/api/* /.netlify/functions/laravel 200
+
+# Routes Laravel vers index.php
+/cobit/* /index.php 200
+/login /index.php 200
+/register /index.php 200
+/dashboard /index.php 200
+/home /index.php 200
+
+# Toutes les autres routes vers Laravel
+/* /index.php 200
