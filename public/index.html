@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBIT 2019 Evaluation Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .feature-card {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .tech-badge {
+            background: #f8f9fa;
+            color: #495057;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>
+                COBIT Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Fonctionnalités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">Démo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">
+                <i class="fas fa-shield-alt me-3"></i>
+                COBIT 2019 Evaluation Platform
+            </h1>
+            <p class="lead mb-5">
+                Plateforme d'évaluation de la maturité COBIT 2019 avec Intelligence Artificielle intégrée
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Version de démonstration</strong> - Cette page présente le projet COBIT développé avec Laravel.
+                        Pour accéder à l'application complète, contactez le développeur.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">🌟 Fonctionnalités Principales</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-pie fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Évaluation COBIT 2019</h5>
+                            <p class="card-text">
+                                Évaluation complète des 40 objectifs COBIT 2019 avec 10 Design Factors
+                                et calculs automatiques de maturité.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Intelligence Artificielle</h5>
+                            <p class="card-text">
+                                Agent IA Expert COBIT avec analyse automatique des documents PDF
+                                et pré-remplissage intelligent des évaluations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Visualisations Interactives</h5>
+                            <p class="card-text">
+                                Graphiques radar et barres interactifs avec Chart.js,
+                                filtres dynamiques et mise à jour temps réel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-comments fa-3x text-info mb-3"></i>
+                            <h5 class="card-title">Chatbot COBIT</h5>
+                            <p class="card-text">
+                                Assistant virtuel spécialisé COBIT 2019 avec réponses contextuelles
+                                et suggestions d'amélioration personnalisées.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-file-export fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Export & Historique</h5>
+                            <p class="card-text">
+                                Export PDF/Excel des résultats, historique complet des évaluations
+                                et comparaisons multiples.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-3x text-secondary mb-3"></i>
+                            <h5 class="card-title">Sécurité & Performance</h5>
+                            <p class="card-text">
+                                Authentification sécurisée, interface responsive Bootstrap 5
+                                et optimisations pour la production.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">🛠️ Technologies Utilisées</h2>
+            <div class="text-center">
+                <span class="tech-badge"><i class="fab fa-laravel"></i> Laravel 10</span>
+                <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+                <span class="tech-badge"><i class="fab fa-js"></i> Chart.js</span>
+                <span class="tech-badge"><i class="fab fa-bootstrap"></i> Bootstrap 5</span>
+                <span class="tech-badge"><i class="fas fa-robot"></i> Ollama AI</span>
+                <span class="tech-badge"><i class="fab fa-php"></i> PHP 8.1+</span>
+                <span class="tech-badge"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="tech-badge"><i class="fas fa-cloud"></i> Cloud Ready</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">📱 Aperçu de l'Application</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <i class="fas fa-chart-radar me-2"></i>
+                            Graphiques Interactifs
+                        </div>
+                        <div class="card-body">
+                            <p>Visualisation en temps réel des résultats d'évaluation COBIT avec :</p>
+                            <ul>
+                                <li>Graphiques radar pour les 5 domaines</li>
+                                <li>Graphiques en barres comparatifs</li>
+                                <li>Filtres dynamiques (Top 3, 5, 10, Tous)</li>
+                                <li>Mise à jour automatique des données</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-brain me-2"></i>
+                            Intelligence Artificielle
+                        </div>
+                        <div class="card-body">
+                            <p>Agent IA Expert COBIT intégré offrant :</p>
+                            <ul>
+                                <li>Analyse automatique des documents PDF</li>
+                                <li>Pré-remplissage intelligent des Design Factors</li>
+                                <li>Recommandations personnalisées</li>
+                                <li>Chatbot spécialisé COBIT 2019</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">📞 Contact</h2>
+            <p class="lead mb-4">Développé par <strong>Jihed Dridi</strong></p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <p><i class="fab fa-github me-2"></i> GitHub: <a href="https://github.com/Jiheddridi" class="text-light">@Jiheddridi</a></p>
+                    <p><i class="fas fa-envelope me-2"></i> Email: jihed.dridi@example.com</p>
+                    <p><i class="fas fa-code me-2"></i> Repository: <a href="https://github.com/Jiheddridi/ProjetKPMG" class="text-light">ProjetKPMG</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">© 2024 COBIT 2019 Evaluation Platform - Développé avec ❤️ par Jihed Dridi</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

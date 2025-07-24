@@ -1,15 +1,17 @@
 [build]
   publish = "public"
-  command = "composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache && php artisan view:cache"
+  command = "echo 'Build complete'"
 
 [build.environment]
   PHP_VERSION = "8.1"
 
 [[redirects]]
   from = "/*"
-  to = "/index.php"
+  to = "/index.html"
   status = 200
 
-[context.production.environment]
-  APP_ENV = "production"
-  APP_DEBUG = "false"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
